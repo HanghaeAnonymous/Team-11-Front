@@ -16,6 +16,7 @@ const initialState = {
   postId: 1,
   title: "강아지가 너무 귀엽다",
   contents: "우리집 강아지가 너무 귀여워서 고민이다.",
+  image: null,
   comments: [
     {
       commentId: 1,
@@ -38,8 +39,7 @@ const initialState = {
 // *** 미들웨어
 const randomPostFB = () => {
   return function (dispatch, getState, { history }) {
-
-    console.log("게시물 조회")
+    console.log("게시물 조회");
     // axios
     //   .get("http://3.37.36.119/api/posts")
     //   .then((response) => {
@@ -52,6 +52,12 @@ const randomPostFB = () => {
   };
 };
 
+const deletePostFB = () => {
+  return function (dispatch, getState, { history }) {
+    console.log("게시물 삭제");
+  };
+};
+
 // *** 리듀서
 export default handleActions(
   {
@@ -60,7 +66,7 @@ export default handleActions(
     },
     [GET_POST]: (state, action) => {
       produce(state, (draft) => {
-        draft = action.payload.post
+        draft = action.payload.post;
       });
     },
   },
@@ -72,6 +78,7 @@ const actionCreators = {
   setPost,
   getPost,
   randomPostFB,
+  deletePostFB,
 };
 
 export { actionCreators };
