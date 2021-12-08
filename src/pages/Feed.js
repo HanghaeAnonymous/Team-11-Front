@@ -21,6 +21,9 @@ const Feed = (props) => {
           <Post></Post>
           <Post></Post>
           <Post></Post>
+          <Post></Post>
+          <Post></Post>
+          <Post></Post>
         </Grid>
       </Grid>
       <Grid>

@@ -2,16 +2,12 @@
 
 // *** 패키지 import
 import React, { useState } from "react";
-import { getCookie } from "../shared/Cookie";
-
 import { Grid, Button, Text, Input } from "../elements/index";
 import Header from "../components/Header";
 import CommentList from "../components/CommentList";
 import CommentWrite from "../components/CommentWrite";
 
 const PostDetail = (props) => {
-  const is_cookie = getCookie("is_login");
-  const [isLogin, setIsLogin] = useState(is_cookie)
   const [myPost, setMyPost] = useState(true);
 
   return (
@@ -23,11 +19,9 @@ const PostDetail = (props) => {
       <Grid margin="5% 0px 5% 0px">
         <Text>게시물 내용입니다.</Text>
       </Grid>
-      {isLogin ? (
-        <Grid margin="0px 0px 0px 0px">
-          <CommentWrite></CommentWrite>
-        </Grid>
-      ) : null}
+      <Grid margin="0px 0px 0px 0px">
+        <CommentWrite></CommentWrite>
+      </Grid>
       <Grid>
         <CommentList></CommentList>
       </Grid>

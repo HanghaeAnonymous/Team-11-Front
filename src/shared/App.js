@@ -18,14 +18,15 @@ import PostDetail from "../pages/PostDetail";
 import Feed from "../pages/Feed";
 
 function App() {
-
   // webSecurty가 세션에 유저 정보를 등록 해준다.
-  // const is_session = sessionStorage.getItem("세션 이름") ? true : false;
-  // const dispatch = useDispatch();
+  const is_session = sessionStorage.getItem("user_token") ? true : false;
+  const dispatch = useDispatch();
 
-  // React.useEffect(()=>{
-  //   dispatch(userActions.loginCheckFB());
-  // })
+  React.useEffect(() => {
+    if (is_session) {
+      dispatch(userActions.loginCheckFB());
+    }
+  });
 
   return (
     <div className="App">

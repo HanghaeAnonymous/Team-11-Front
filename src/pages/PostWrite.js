@@ -4,14 +4,12 @@
 import React from "react";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
-import { getCookie } from "../shared/Cookie";
 
 import { Grid, Button, Text, Input } from "../elements/index";
 import Header from "../components/Header";
 
 const PostWrite = (props) => {
   const history = useHistory();
-  const is_cookie = getCookie("is_login");
 
   const [title, setTitle] = React.useState("");
   const [contents, setContents] = React.useState("");
@@ -24,24 +22,6 @@ const PostWrite = (props) => {
   const write = () => {
     window.alert("게시물 작성이 완료 되었습니다!");
   };
-
-  if (!is_cookie) {
-    return (
-      <Grid margin="100px 0px" padding="16px" center>
-        <Text size="32px" bold>
-          앗! 잠깐!
-        </Text>
-        <Text size="16px">로그인 후에만 글을 쓸 수 있어요!</Text>
-        <Button
-          _onClick={() => {
-            history.replace("/");
-          }}
-        >
-          로그인 하러가기
-        </Button>
-      </Grid>
-    );
-  }
 
   return (
     <React.Fragment>

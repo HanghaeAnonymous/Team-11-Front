@@ -13,8 +13,9 @@ import { getCookie } from "../shared/Cookie";
 const Index = (props) => {
 
   const history = useHistory();
-  const is_cookie = getCookie('is_login')
-  const [isLogin, setIsLogin] = React.useState(is_cookie);
+
+  const is_session = localStorage.getItem("user_token") ? true : false;
+  const [isLogin, setIsLogin] = React.useState(is_session);
 
   return (
     <div>
