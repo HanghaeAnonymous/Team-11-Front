@@ -19,14 +19,14 @@ import Feed from "../pages/Feed";
 
 function App() {
   
-  // const user_token = localStorage.getItem("user_token") ? true : false;
-  // const dispatch = useDispatch();
+  const user_token = localStorage.getItem("user_token") ? true : false;
+  const dispatch = useDispatch();
 
-  // React.useEffect(() => {
-  //   if (user_token) {
-  //     dispatch(userActions.loginCheckFB());
-  //   }
-  // });
+  React.useEffect(() => {
+    if (user_token) {
+      dispatch(userActions.loginCheckFB());
+    }
+  });
 
   return (
     <div className="App">
