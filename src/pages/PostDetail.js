@@ -27,6 +27,8 @@ const PostDetail = (props) => {
       dispatch(postActions.randomPostFB());
       console.log("정보 없음");
     }
+
+    dispatch(postActions.randomPostFB());
   });
 
   // 넘어가기 버튼 클릭 시 다음 게시물 요청하기
@@ -91,7 +93,7 @@ const PostDetail = (props) => {
               width="50%"
               height="50vh"
             >
-              {postInfo.contents}
+              {postInfo.content}
             </Text>
           </Grid>
         </Grid>
@@ -152,7 +154,7 @@ const PostDetail = (props) => {
             width="50%"
             height="50vh"
           >
-            {postInfo.contents}
+            {postInfo.content}
           </Text>
         </Grid>
       </Grid>

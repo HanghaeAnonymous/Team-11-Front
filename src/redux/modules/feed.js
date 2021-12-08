@@ -8,46 +8,32 @@ import axios from "axios";
 const GET_FEED = "GET_FEED";
 
 // *** 액션 생성 함수
-const getFeed = createAction(GET_FEED, (feed) => ({ feed }));
+const getFeed = createAction(GET_FEED, (myContens, myPosts) => ({
+  myContens,
+  myPosts,
+}));
 
 // *** 초기값
 const initialState = {
-  myPosts: [
-    {
-      postId: 1,
-      title: "제목이에요",
-      content: "내용이에요",
-    },
-    {
-      postId: 2,
-      title: "제목 2에요",
-      content: "내용 2에요",
-    },
-  ],
-  myComments: [
-    {
-      commentId: 1,
-      comment: "댓글이에요",
-      createdAt: "2021-10-11",
-    },
-    {
-      commentId: 2,
-      comment: "댓글 2에요",
-      createdAt: "2021-10-11",
-    },
-  ],
+  myPosts: [],
+  myComments: [],
 };
 
 // *** 미들웨어
 const getFeedFB = () => {
   return function (dispatch, getState, { history }) {
-    const username = getState().user.username;
+    const token = localStorage.getItem("user_token");
 
     axios
-      .get(`http://3.37.36.119/api/feeds/${username}`)
+      .get("http://3.37.36.119/api/feeds", {
+        headers: { Authorization: token },
+      })
       .then((response) => {
         console.log("피드 정보 가져오기 성공");
-        dispatch(getFeed);
+
+        const myContens = response.data.myComments;
+        const myPosts = response.data.myPosts;
+        dispatch(getFeed(myContens, myPosts));
       })
       .catch((err) => {
         console.log("피드 정보 가져오기 실패", err);
@@ -60,7 +46,8 @@ export default handleActions(
   {
     [GET_FEED]: (state, action) => {
       produce(state, (draft) => {
-        draft = action.payload.feed;
+        draft.myPosts = [...action.payload.myPosts]
+        draft.myComments = [...action.payload.myContens]
       });
     },
   },

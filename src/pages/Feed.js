@@ -19,14 +19,13 @@ const Feed = (props) => {
   const feedInfo = useSelector((state) => state.feed);
 
   React.useEffect(() => {
-    if (!feedInfo) {
-      dispatch(feedActions.getFeedFB());
-    }
+    dispatch(feedActions.getFeedFB());
   });
 
   // 게시물을 눌렀을 때 해당 게시물로 이동
   const postDetail = (postId)=>{
     console.log('게시물 페이지 이동')
+    console.log(postId)
     dispatch(postActions.myPostFB(postId))
   }
 

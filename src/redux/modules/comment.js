@@ -13,7 +13,7 @@ const addComment = createAction(ADD_COMMENT, (comment) => ({
 
 // *** 초기값
 const initialState = {
-  comments: [],
+  comments: null,
 };
 
 // *** 미들웨어
@@ -22,15 +22,15 @@ const addCommentFB = (postId, comment) => {
     console.log(postId);
     console.log(comment);
     console.log("댓글 작성");
-    // axios
-    //   .post(`http://3.37.36.119/api/comments/${postId}`)
-    //   .then((response) => {
-    //     console.log("댓글 작성 성공");
-    //     dispatch(addComment(comment))
-    //   })
-    //   .catch((err) => {
-    //     console.log("댓글 작성 실패", err);
-    //   });
+    axios
+      .post("http://3.37.36.119/api/comments/"+postId)
+      .then((response) => {
+        console.log("댓글 작성 성공");
+        dispatch(addComment(comment))
+      })
+      .catch((err) => {
+        console.log("댓글 작성 실패", err);
+      });
   };
 };
 

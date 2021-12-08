@@ -9,11 +9,10 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { actionCreators as postActions } from "../redux/modules/post";
 
 const Index = (props) => {
-
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const user_token = localStorage.getItem("user_token") ? true : false;
   const [isLogin, setIsLogin] = React.useState(user_token);
@@ -44,7 +43,9 @@ const Index = (props) => {
             <Button
               width="20vw"
               margin="0px 28% 0px 0px"
-              _onClick={()=>{history.push('/post')}}
+              _onClick={() => {
+                history.push("/post");
+              }}
             >
               상담하기
             </Button>

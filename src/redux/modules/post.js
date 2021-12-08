@@ -8,15 +8,14 @@ const GET_POST = "GET_POST";
 const SET_POST = "SET_POST";
 
 // *** 액션 생성 함수
-const setPost = createAction(SET_POST, (post) => ({ post }));
-const getPost = createAction(GET_POST, (post) => ({ post }));
+const setPost = createAction(SET_POST, (postList) => ({ postList }));
+const getPost = createAction(GET_POST, (postList) => ({ postList }));
 
 // *** 초기값
 const initialState = {
   postId: 1,
-  title: "강아지가 너무 귀엽다",
-  contents: "우리집 강아지가 너무 귀여워서 고민이다.",
-  image: null,
+  title: "강아지",
+  content: "우리집 강아지",
   comments: [
     {
       commentId: 1,
@@ -40,48 +39,69 @@ const initialState = {
 const randomPostFB = () => {
   return function (dispatch, getState, { history }) {
     console.log("게시물 조회");
-    // axios
-    //   .get("http://3.37.36.119/api/posts")
-    //   .then((response) => {
-    //     dispatch(getPost(response));
-    //     console.log("게시물 조회 성공");
-    //   })
-    //   .catch((err) => {
-    //     console.log("게시물 조회 실패", err);
-    //   });
+    const token = localStorage.getItem("user_token");
+
+    axios
+      .get("http://3.37.36.119/api/posts", {
+        headers: { Authorization: token },
+      })
+      .then((response) => {
+        if(response.data === ""){
+          history.replace('/')
+          window.alert("게시물이 없습니다.")
+          return;
+        }
+        dispatch(getPost(response.data));
+        console.log("게시물 조회 성공");
+      })
+      .catch((err) => {
+        console.log("게시물 조회 실패", err);
+      });
   };
 };
 
 const myPostFB = (postId) => {
   return function (dispatch, getState, { history }) {
     console.log("내가 작성한 게시물 조회");
-    // axios
-    //   .get(`http://3.37.36.119/api/posts/${postId}`)
-    //   .then((response) => {
-    //     console.log("내가 작성한 게시물 조회 성공");
-    //     dispatch(getPost(response))
-    //     history.replace(`/post/${postId}`);
-    //   })
-    //   .catch((err) => {
-    //     console.log("내가 작성한 게시물 조회 실패", err);
-    //   });
+    const token = localStorage.getItem("user_token");
+
+    axios
+      .get("http://3.37.36.119/api/posts/" + postId, {
+        headers: { Authorization: token },
+      })
+      .then((response) => {
+        console.log("내가 작성한 게시물 조회 성공");
+        dispatch(getPost(response.data));
+        history.replace(`/post/${postId}`);
+      })
+      .catch((err) => {
+        console.log("내가 작성한 게시물 조회 실패", err);
+      });
   };
 };
 
 const myCommentFB = (commentId) => {
   return function (dispatch, getState, { history }) {
     console.log("내가 댓글을 작성한 게시물 조회");
-    // axios
-    //   .get(`http://3.37.36.119/api/comments/${commentId}`)
-    //   .data({commentId : commentId})
-    //   .then((response) => {
-    //     console.log("내가 댓글을 작성한 게시물 조회 성공");
-    //     dispatch(getPost(response))
-    //     history.replace('/post');
-    //   })
-    //   .catch((err) => {
-    //     console.log("내가 댓글을 작성한 게시물 조회 실패", err);
-    //   });
+    const token = localStorage.getItem("user_token");
+
+    axios
+      .get(
+        "http://3.37.36.119/api/comments/" + commentId,
+        { commentId: commentId },
+        {
+          headers: { Authorization: token },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+        console.log("내가 댓글을 작성한 게시물 조회 성공");
+        dispatch(getPost(response.data));
+        history.replace("/post");
+      })
+      .catch((err) => {
+        console.log("내가 댓글을 작성한 게시물 조회 실패", err);
+      });
   };
 };
 
@@ -99,7 +119,7 @@ export default handleActions(
     },
     [GET_POST]: (state, action) => {
       produce(state, (draft) => {
-        draft = action.payload.post;
+        draft = action.payload.postList
       });
     },
   },
