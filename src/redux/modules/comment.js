@@ -7,8 +7,7 @@ import axios from "axios";
 const ADD_COMMENT = "ADD_COMMENT";
 
 // *** 액션 생성 함수
-const addComment = createAction(ADD_COMMENT, (postId, comment) => ({
-  postId,
+const addComment = createAction(ADD_COMMENT, (comment) => ({
   comment,
 }));
 
@@ -20,14 +19,14 @@ const initialState = {
 // *** 미들웨어
 const addCommentFB = (postId, comment) => {
   return function (dispatch, getState, { history }) {
-
-    console.log(postId)
-    console.log(comment)
-    console.log("댓글 작성")
+    console.log(postId);
+    console.log(comment);
+    console.log("댓글 작성");
     // axios
     //   .post(`http://3.37.36.119/api/comments/${postId}`)
     //   .then((response) => {
     //     console.log("댓글 작성 성공");
+    //     dispatch(addComment(comment))
     //   })
     //   .catch((err) => {
     //     console.log("댓글 작성 실패", err);
@@ -39,7 +38,9 @@ const addCommentFB = (postId, comment) => {
 export default handleActions(
   {
     [ADD_COMMENT]: (state, action) => {
-      produce(state, (draft) => {});
+      produce(state, (draft) => {
+        draft.comments.unshift(action.payload.comment);
+      });
     },
   },
   initialState

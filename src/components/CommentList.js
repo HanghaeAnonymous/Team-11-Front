@@ -20,7 +20,7 @@ const CommentList = (props) => {
 };
 
 const CommentItem = (props) => {
-  const { commentId, comment, createAt } = props;
+  const { commentId, comment, createdAt } = props;
   return (
     <React.Fragment>
       <Grid is_flex margin="auto" width="70%">
@@ -31,7 +31,7 @@ const CommentItem = (props) => {
           <Text margin="0px">{comment}</Text>
         </Grid>
         <Grid>
-          <Text margin="0px">{createAt}</Text>
+          <Text margin="0px">{createdAt}</Text>
         </Grid>
       </Grid>
     </React.Fragment>
@@ -41,7 +41,7 @@ const CommentItem = (props) => {
 CommentItem.defaultProps = {
   commentId: 1,
   comment: "기본 댓글 내용",
-  createAt: "날짜",
+  createdAt: "날짜",
 };
 
 export default CommentList;

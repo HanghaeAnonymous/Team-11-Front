@@ -5,8 +5,7 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 import { useDispatch, useSelector } from "react-redux";
 
 const CommentWrite = (props) => {
-
-  const postId = useSelector((state) => state.post.postId)
+  const postId = useSelector((state) => state.post.postId);
   const [comment, setComment] = React.useState();
   const dispatch = useDispatch();
 
@@ -15,6 +14,10 @@ const CommentWrite = (props) => {
   };
 
   const write = () => {
+    if (comment == undefined || comment === "") {
+      window.alert("댓글을 입력 해주세요");
+      return;
+    }
     dispatch(commentActions.addCommentFB(postId, comment));
     setComment(""); // 댓글을 입력하면 input의 value를 날려준다.
   };
