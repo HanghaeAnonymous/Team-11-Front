@@ -109,6 +109,7 @@ const SignUp = (props) => {
     dispatch(userActions.signUpDB(username, password, passwordCheck));
     setModalIsOpen(false)
     props.setSignUpModal(false)
+    props.setLoginModal(true) // 회원가입 성공 시 로그인 모달창 띄움
   };
 
   // 뷰

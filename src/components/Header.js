@@ -95,6 +95,7 @@ const Header = (props) => {
           {signUpModal && (
             <SignUp
               modal={signUpModal}
+              setLoginModal={setLoginModal}
               setSignUpModal={setSignUpModal}
             ></SignUp>
           )}
