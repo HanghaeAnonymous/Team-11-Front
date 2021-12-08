@@ -8,8 +8,8 @@ import axios from "axios";
 const GET_FEED = "GET_FEED";
 
 // *** 액션 생성 함수
-const getFeed = createAction(GET_FEED, (myContens, myPosts) => ({
-  myContens,
+const getFeed = createAction(GET_FEED, (myContents, myPosts) => ({
+  myContents,
   myPosts,
 }));
 
@@ -31,9 +31,15 @@ const getFeedFB = () => {
       .then((response) => {
         console.log("피드 정보 가져오기 성공");
 
-        const myContens = response.data.myComments;
+        const myContents = response.data.myComments;
         const myPosts = response.data.myPosts;
-        dispatch(getFeed(myContens, myPosts));
+
+        if(myContents == undefined || myPosts == undefined){
+          console.log("undefined")
+          return;
+        }
+        
+        dispatch(getFeed(myContents, myPosts));
       })
       .catch((err) => {
         console.log("피드 정보 가져오기 실패", err);
@@ -46,8 +52,8 @@ export default handleActions(
   {
     [GET_FEED]: (state, action) => {
       produce(state, (draft) => {
-        draft.myPosts = [...action.payload.myPosts]
-        draft.myComments = [...action.payload.myContens]
+        draft.myPosts.push(action.payload.myPosts)
+        draft.myComments.push(action.payload.myContents)
       });
     },
   },
