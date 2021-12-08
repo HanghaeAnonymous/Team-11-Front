@@ -7,8 +7,9 @@ import Header from "../components/Header";
 
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router";
-import { getCookie } from "../shared/Cookie";
+import { useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { actionCreators as postActions } from "../redux/modules/post";
 
 const Index = (props) => {
 
@@ -43,9 +44,7 @@ const Index = (props) => {
             <Button
               width="20vw"
               margin="0px 28% 0px 0px"
-              _onClick={() => {
-                history.push("/postDetail");
-              }}
+              _onClick={()=>{history.push('/post')}}
             >
               상담하기
             </Button>
