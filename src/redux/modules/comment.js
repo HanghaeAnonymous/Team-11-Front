@@ -13,7 +13,7 @@ const addComment = createAction(ADD_COMMENT, (comment) => ({
 
 // *** 초기값
 const initialState = {
-  comments: null,
+  comments: [],
 };
 
 // *** 미들웨어
@@ -21,7 +21,7 @@ const addCommentFB = (postId, comment) => {
   return function (dispatch, getState, { history }) {
     console.log("댓글 작성");
 
-    const token = localStorage.getItem("user_token")
+    const token = localStorage.getItem("user_token");
 
     axios
       .post(
@@ -43,8 +43,8 @@ const addCommentFB = (postId, comment) => {
 export default handleActions(
   {
     [ADD_COMMENT]: (state, action) => {
-      produce(state, (draft) => {
-        draft.comments.unshift(action.payload.comment);
+      return produce(state, (draft) => {
+        draft.comments.push(action.payload.comment);
       });
     },
   },

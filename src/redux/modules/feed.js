@@ -73,7 +73,7 @@ const getFeedFB = () => {
 export default handleActions(
   {
     [GET_FEED]: (state, action) => {
-      produce(state, (draft) => {
+      return produce(state, (draft) => {
         draft.myPosts = action.payload.myPosts;
         draft.myComments = action.payload.myContents;
       });

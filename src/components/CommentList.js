@@ -3,20 +3,34 @@
 // *** 패키지 import
 import React from "react";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 import { Grid, Button, Text, Input } from "../elements/index";
 
 const CommentList = (props) => {
 
-  const commentInfo = useSelector((state)=>state.post.comments)
+  const myCommentInfo = useSelector((state) => state.post.comments);
+  const check = myCommentInfo.commentId ? true : false
+  const commentInfo = useSelector((state)=>state.feed.myPosts);
 
-  return (
-    <React.Fragment>
-      {commentInfo.map((p) => {
-        return <CommentItem key={p.commentId} {...p}></CommentItem>;
-      })}
-    </React.Fragment>
-  );
+  if(check){ // 내 게시물 조회일 경우
+    console.log("게시물게시물 조회")
+    return (
+      <React.Fragment> 
+        {myCommentInfo.map((p) => {
+          return <CommentItem key={p.commentId} {...p}></CommentItem>;
+        })}
+      </React.Fragment>
+    );
+  }else{ // 랜덤한 게시물 조회일 경우
+    return (
+      <React.Fragment> 
+        {commentInfo.map((p) => {
+          return <CommentItem key={p.commentId} {...p}></CommentItem>;
+        })}
+      </React.Fragment>
+    );
+  }
 };
 
 const CommentItem = (props) => {

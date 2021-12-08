@@ -20,20 +20,19 @@ const Feed = (props) => {
 
   React.useEffect(() => {
     dispatch(feedActions.getFeedFB());
-  });
+  }, []);
 
   // 게시물을 눌렀을 때 해당 게시물로 이동
-  const postDetail = (postId)=>{
-    console.log('게시물 페이지 이동')
-    console.log(postId)
-    dispatch(postActions.myPostFB(postId))
-  }
+  const postDetail = (postId) => {
+    console.log("게시물 페이지 이동");
+    history.push("/post/" + postId);
+  };
 
   // 댓글 눌렀을 때 해당 게시물로 이동
-  const commentDetail = (commentId)=>{
-    console.log('댓글 페이지 이동')
-    dispatch(postActions.myCommentFB(commentId))
-  }
+  const commentDetail = (commentId) => {
+    console.log("댓글 페이지 이동");
+    dispatch(postActions.myCommentFB(commentId));
+  };
 
   if (!user_token) {
     window.alert("로그인 후 이용 가능합니다.");
@@ -55,7 +54,15 @@ const Feed = (props) => {
           justifyContent="flex-start"
         >
           {feedInfo.myPosts.map((p) => {
-            return <Post _onClick={()=>{postDetail(p.postId)}} key={p.postId} {...p}></Post>;
+            return (
+              <Post
+                _onClick={() => {
+                  postDetail(p.postId);
+                }}
+                key={p.postId}
+                {...p}
+              ></Post>
+            );
           })}
         </Grid>
       </Grid>
@@ -65,7 +72,16 @@ const Feed = (props) => {
         </Text>
         <Grid is_flex padding="10px" width="auto" flexFlow>
           {feedInfo.myComments.map((c) => {
-            return <Post noWrap _onClick={()=>{commentDetail(c.commentId)}} key={c.commentId} {...c}></Post>;
+            return (
+              <Post
+                noWrap
+                _onClick={() => {
+                  commentDetail(c.commentId);
+                }}
+                key={c.commentId}
+                {...c}
+              ></Post>
+            );
           })}
         </Grid>
       </Grid>

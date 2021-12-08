@@ -10,7 +10,6 @@ import { actionCreators as postActions } from "../redux/modules/post";
 import Header from "../components/Header";
 import CommentList from "../components/CommentList";
 import CommentWrite from "../components/CommentWrite";
-import axios from "axios";
 
 const PostDetail = (props) => {
   
@@ -22,14 +21,15 @@ const PostDetail = (props) => {
   const postInfo = useSelector((state) => state.post);
 
   React.useEffect(() => {
-    if (!postInfo && !params.postId) { // 내가 작성한 게시물이 아니면서 게시물 정보가 없을 경우
+    // 랜덤한 게시물일 경우
+    if (!params.postId) {
       // 랜덤한 정보를 서버에 요청
       dispatch(postActions.randomPostFB());
-      console.log("정보 없음");
     }
 
-    dispatch(postActions.randomPostFB());
-  });
+    // 내 게시물일 경우
+    dispatch(postActions.myPostFB(params.postId));
+  }, []);
 
   // 넘어가기 버튼 클릭 시 다음 게시물 요청하기
   const nextPost = () => {

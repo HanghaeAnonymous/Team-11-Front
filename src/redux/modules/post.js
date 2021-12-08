@@ -13,7 +13,7 @@ const getPost = createAction(GET_POST, (postList) => ({ postList }));
 
 // *** 초기값
 const initialState = {
-  postId: 32,
+  postId: null,
   title: null,
   content: null,
   comments: [
@@ -36,6 +36,7 @@ const randomPostFB = () => {
         headers: { Authorization: token },
       })
       .then((response) => {
+        console.log(response.data);
 
         if (response.data === "") {
           history.replace("/");
@@ -52,6 +53,7 @@ const randomPostFB = () => {
 };
 
 const myPostFB = (postId) => {
+
   return function (dispatch, getState, { history }) {
     console.log("내가 작성한 게시물 조회");
     const token = localStorage.getItem("user_token");
@@ -63,7 +65,6 @@ const myPostFB = (postId) => {
       .then((response) => {
         console.log("내가 작성한 게시물 조회 성공");
         dispatch(getPost(response.data));
-        history.replace(`/post/${postId}`);
       })
       .catch((err) => {
         console.log("내가 작성한 게시물 조회 실패", err);
@@ -109,11 +110,11 @@ export default handleActions(
       produce(state, (draft) => {});
     },
     [GET_POST]: (state, action) => {
-      produce(state, (draft) => {
+      return produce(state, (draft) => {
         draft.postId = action.payload.postList.postId;
         draft.title = action.payload.postList.title;
-        draft.commen = action.payload.postList.comment;
-        draft.comments = {...action.payload.postList.comments}
+        draft.content = action.payload.postList.content;
+        draft.comments = { ...action.payload.postList.comments };
       });
     },
   },
