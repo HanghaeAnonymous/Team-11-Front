@@ -35,27 +35,15 @@ const loginCheckFB = () => {
     // axios
     //   .get("http://3.37.36.119/api/islogin")
     //   .then((response) => {
-    //     console.log(response);
-    //     // if (response) {
-    //     //   const is_login = true;
-    //     //   dispatch(setUser(is_login, response.userInfo.username));
-    //     // }
+        
+    //     const is_login = true; // 로그인 상태
+    //     const username = response.userInfo.username // 사용자 정보
+
+    //     dispatch(setUser(is_login, username))
     //   })
     //   .catch((err) => {
-    //     console.log("로그인 여부 확인 실패");
+    //     console.log("로그인 여부 확인 실패", err);
     //   });
-
-    // const user = getState().user.is_login;
-
-    // if (user === false) {
-    //   console.log("로그인 여부 확인 실패");
-    //   return;
-    // }
-
-    // const is_login = true;
-    // const username = user.username;
-    // dispatch(setUser(is_login, username));
-    // console.log("로그인 여부 확인 성공");
   };
 };
 
@@ -70,6 +58,7 @@ const loginFB = (username, password) => {
       .then((response) => {
         const user_token = response.headers.authorization;
         localStorage.setItem("user_token", user_token);
+        window.alert("로그인 되셨습니다.")
         window.location.reload()
       })
       .catch((err) => {
@@ -101,8 +90,7 @@ const signUpDB = (username, password, passwordCheck) => {
     apis
       .signup(username, password, passwordCheck)
       .then((res) => {
-        console.log(res);
-        // history.push("/");
+        window.alert("회원가입 되셨습니다.")
       })
       .catch((err) => {
         window.alert("이미 존재하는 아이디 또는 이메일입니다.");

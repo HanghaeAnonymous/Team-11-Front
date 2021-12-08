@@ -140,12 +140,12 @@ const SignUp = (props) => {
               value={username}
               _onChange={idCheck}
               _onKeyUp={checkActive}
-            />
+            /><br/>
             {username.length > 0 && (
               <Span size="3px" className={`${isId ? "success" : "error"}`}>
                 {idMessage}
               </Span>
-            )}
+            )}<br/>
             {/* <form action="http://3.37.36.119/api/signup" method="post"> */}
 
             <Input
@@ -155,12 +155,12 @@ const SignUp = (props) => {
               value={password}
               _onChange={pwdCheck}
               _onKeyUp={checkActive}
-            />
+            /><br/>
             {password.length > 0 && (
               <Span size="3px" className={`${isPwd ? "success" : "error"}`}>
                 {pwdMessage}
               </Span>
-            )}
+            )}<br/>
 
             <Input
               label="비밀번호 확인"
@@ -169,7 +169,7 @@ const SignUp = (props) => {
               value={passwordCheck}
               _onChange={isSamePwd}
               _onKeyUp={checkActive}
-            />
+            /><br/>
             {passwordCheck.length > 0 && (
               <Span
                 size="3px"
@@ -177,7 +177,7 @@ const SignUp = (props) => {
               >
                 {pwdCheckMessage}
               </Span>
-            )}
+            )}<br/>
 
             <Button
               text="회원가입하기"
