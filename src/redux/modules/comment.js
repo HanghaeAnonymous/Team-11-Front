@@ -19,14 +19,19 @@ const initialState = {
 // *** 미들웨어
 const addCommentFB = (postId, comment) => {
   return function (dispatch, getState, { history }) {
-    console.log(postId);
-    console.log(comment);
     console.log("댓글 작성");
+
+    const token = localStorage.getItem("user_token")
+
     axios
-      .post("http://3.37.36.119/api/comments/"+postId)
+      .post(
+        `http://3.37.36.119/api/comments/${postId}`,
+        { comment: comment },
+        { headers: { Authorization: token } }
+      )
       .then((response) => {
         console.log("댓글 작성 성공");
-        dispatch(addComment(comment))
+        dispatch(addComment(comment));
       })
       .catch((err) => {
         console.log("댓글 작성 실패", err);
