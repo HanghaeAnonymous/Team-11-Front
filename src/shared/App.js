@@ -35,7 +35,8 @@ function App() {
         <Route path="/login" exact component={Login}></Route>
         <Route path="/signUp" exact component={SignUp}></Route>
         <Route path="/feed" exact component={Feed}></Route>
-        <Route path="/postDetail" exact component={PostDetail}></Route>
+        <Route path="/post" exact component={PostDetail}></Route>
+        <Route path="/post/:postId" exact component={PostDetail}></Route>
         <Route path="/postWrite" exact component={PostWrite}></Route>
       </ConnectedRouter>
     </div>

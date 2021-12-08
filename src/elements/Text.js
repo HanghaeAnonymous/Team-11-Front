@@ -23,8 +23,8 @@ Text.defaultProps = {
   size: "14px",
   margin: false,
   border: false,
-  width: false,
-  height: false,
+  width: "100%",
+  height: "100%",
 };
 
 const P = styled.p`
