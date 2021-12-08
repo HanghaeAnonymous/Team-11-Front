@@ -15,8 +15,30 @@ const getFeed = createAction(GET_FEED, (myContents, myPosts) => ({
 
 // *** 초기값
 const initialState = {
-  myPosts: [],
-  myComments: [],
+  myPosts: [
+    {
+      postId: 1,
+      title: "제목이에요",
+      content: "내용이에요",
+    },
+    {
+      postId: 2,
+      title: "제목 2에요",
+      content: "내용 2에요",
+    },
+  ],
+  myComments: [
+    {
+      commentId: 1,
+      comment: "댓글이에요",
+      createdAt: "날짜",
+    },
+    {
+      commentId: 2,
+      comment: "댓글 2에요",
+      createdAt: "날짜",
+    },
+  ],
 };
 
 // *** 미들웨어
@@ -34,11 +56,11 @@ const getFeedFB = () => {
         const myContents = response.data.myComments;
         const myPosts = response.data.myPosts;
 
-        if(myContents == undefined || myPosts == undefined){
-          console.log("undefined")
+        if (myContents == undefined || myPosts == undefined) {
+          console.log("undefined");
           return;
         }
-        
+
         dispatch(getFeed(myContents, myPosts));
       })
       .catch((err) => {
@@ -52,8 +74,8 @@ export default handleActions(
   {
     [GET_FEED]: (state, action) => {
       produce(state, (draft) => {
-        draft.myPosts.push(action.payload.myPosts)
-        draft.myComments.push(action.payload.myContents)
+        draft.myPosts = action.payload.myPosts;
+        draft.myComments = action.payload.myContents;
       });
     },
   },

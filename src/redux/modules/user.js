@@ -113,7 +113,6 @@ export default handleActions(
     },
     [LOG_OUT]: (state, action) => {
       produce(state, (draft) => {
-        deleteCookie("is_login");
         draft.username = null;
         draft.is_login = false;
       });
