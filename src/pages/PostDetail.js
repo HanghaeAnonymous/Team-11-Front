@@ -3,12 +3,22 @@
 // *** 패키지 import
 import React, { useState } from "react";
 import { Grid, Button, Text, Input } from "../elements/index";
+import { useHistory } from "react-router";
+
 import Header from "../components/Header";
 import CommentList from "../components/CommentList";
 import CommentWrite from "../components/CommentWrite";
 
 const PostDetail = (props) => {
+  
   const [myPost, setMyPost] = useState(true);
+  const history = useHistory();
+  const user_token = localStorage.getItem('user_token') ? true : false;
+
+  if(!user_token){
+    window.alert("로그인 후 이용 가능합니다.")
+    history.replace('/')
+  }
 
   return (
     <React.Fragment>
@@ -19,7 +29,7 @@ const PostDetail = (props) => {
       <Grid margin="5% 0px 5% 0px">
         <Text>게시물 내용입니다.</Text>
       </Grid>
-      <Grid margin="0px 0px 0px 0px">
+      <Grid>
         <CommentWrite></CommentWrite>
       </Grid>
       <Grid>
@@ -31,7 +41,7 @@ const PostDetail = (props) => {
             <Button
               text="수정"
               width="12.5vw"
-              margin="0px 0px 0px 40%"
+              margin="0px 0px 0px 30%"
             ></Button>
             <Button text="삭제" width="12.5vw" marin="0px 0px 0px 30%"></Button>
           </Grid>

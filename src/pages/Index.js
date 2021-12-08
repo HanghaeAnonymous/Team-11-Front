@@ -14,8 +14,8 @@ const Index = (props) => {
 
   const history = useHistory();
 
-  const is_session = localStorage.getItem("user_token") ? true : false;
-  const [isLogin, setIsLogin] = React.useState(is_session);
+  const user_token = localStorage.getItem("user_token") ? true : false;
+  const [isLogin, setIsLogin] = React.useState(user_token);
 
   return (
     <div>

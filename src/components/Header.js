@@ -14,7 +14,7 @@ const Header = (props) => {
 
   const history = useHistory();
   const dispatch = useDispatch();
-  const is_session = localStorage.getItem("user_token") ? true : false;
+  const user_token = localStorage.getItem("user_token") ? true : false;
 
   const [loginModal, setLoginModal] = React.useState(false);
   const [signUpModal, setSignUpModal] = React.useState(false);
@@ -34,11 +34,11 @@ const Header = (props) => {
     window.location.reload() // ★ 임시
   };
 
-  if (is_session) {
+  if (user_token) {
     return (
       <React.Fragment>
         <Grid is_flex padding="4px 16px">
-          <Grid _onClick={() => (window.location.href = "/")}>
+          <Grid _onClick={() => (history.push('/'))}>
             <Text margin="0px" size="24px" bold>
               로고
             </Text>

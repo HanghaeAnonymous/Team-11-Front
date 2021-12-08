@@ -6,8 +6,18 @@ import React from "react";
 import { Grid, Button, Text, Input } from "../elements/index";
 import Post from "../components/Post";
 import Header from "../components/Header";
+import { useHistory } from "react-router";
 
 const Feed = (props) => {
+
+  const user_token = localStorage.getItem("user_token") ? true : false;
+  const history = useHistory();
+
+  if (!user_token) {
+    window.alert("로그인 후 이용 가능합니다.");
+    history.replace("/");
+  }
+  
   return (
     <React.Fragment>
       <Header></Header>

@@ -10,6 +10,7 @@ import Header from "../components/Header";
 
 const PostWrite = (props) => {
   const history = useHistory();
+  const user_token = localStorage.getItem("user_token") ? true : false;
 
   const [title, setTitle] = React.useState("");
   const [contents, setContents] = React.useState("");
@@ -22,6 +23,11 @@ const PostWrite = (props) => {
   const write = () => {
     window.alert("게시물 작성이 완료 되었습니다!");
   };
+
+  if (!user_token) {
+    window.alert("로그인 후 이용 가능합니다.");
+    history.replace("/");
+  }
 
   return (
     <React.Fragment>

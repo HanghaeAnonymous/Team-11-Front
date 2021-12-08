@@ -19,11 +19,11 @@ import Feed from "../pages/Feed";
 
 function App() {
   // webSecurty가 세션에 유저 정보를 등록 해준다.
-  const is_session = sessionStorage.getItem("user_token") ? true : false;
+  const user_token = localStorage.getItem("user_token") ? true : false;
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    if (is_session) {
+    if (user_token) {
       dispatch(userActions.loginCheckFB());
     }
   });
