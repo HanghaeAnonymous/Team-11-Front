@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Grid, Input, Button } from "../elements";
-import { actionCreators as commentActions } from "../redux/modules/comment";
+import { actionCreators as postActions } from "../redux/modules/post";
 import { useDispatch, useSelector } from "react-redux";
 
 const CommentWrite = (props) => {
@@ -18,7 +18,7 @@ const CommentWrite = (props) => {
       window.alert("댓글을 입력 해주세요");
       return;
     }
-    dispatch(commentActions.addCommentFB(postId, comment));
+    dispatch(postActions.addCommentFB(postId, comment));
     setComment(""); // 댓글을 입력하면 input의 value를 날려준다.
   };
 

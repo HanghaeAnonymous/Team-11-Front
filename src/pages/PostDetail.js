@@ -12,23 +12,29 @@ import CommentList from "../components/CommentList";
 import CommentWrite from "../components/CommentWrite";
 
 const PostDetail = (props) => {
-  
   const history = useHistory();
   const dispatch = useDispatch();
   const user_token = localStorage.getItem("user_token") ? true : false;
   const params = useParams();
 
   const postInfo = useSelector((state) => state.post);
+  console.log(postInfo.postId)
 
   React.useEffect(() => {
     // 랜덤한 게시물일 경우
-    if (!params.postId) {
+    if (!params.postId && !postInfo) {
       // 랜덤한 정보를 서버에 요청
       dispatch(postActions.randomPostFB());
+      return;
     }
 
     // 내 게시물일 경우
-    dispatch(postActions.myPostFB(params.postId));
+    if (params.postId) {
+      dispatch(postActions.myPostFB(params.postId));
+    }
+
+    // 내가 댓글을 단 게시물을 보는 경우
+    // postInfo가 있을 때 해당하는 거라서 따로 처리 안함
   }, []);
 
   // 넘어가기 버튼 클릭 시 다음 게시물 요청하기
@@ -49,8 +55,8 @@ const PostDetail = (props) => {
 
     if (deleteCheck) {
       dispatch(postActions.deletePostFB(postInfo.postId));
-      window.alert("게시물이 삭제 되었습니다.")
-      history.replace('/')
+      window.alert("게시물이 삭제 되었습니다.");
+      history.replace("/");
     }
   };
 

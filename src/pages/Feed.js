@@ -32,6 +32,7 @@ const Feed = (props) => {
   const commentDetail = (commentId) => {
     console.log("댓글 페이지 이동");
     dispatch(postActions.myCommentFB(commentId));
+    history.push('/post')
   };
 
   if (!user_token) {

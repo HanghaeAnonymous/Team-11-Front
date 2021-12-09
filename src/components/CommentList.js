@@ -9,28 +9,20 @@ import { Grid, Button, Text, Input } from "../elements/index";
 
 const CommentList = (props) => {
 
-  const myCommentInfo = useSelector((state) => state.post.comments);
-  const check = myCommentInfo.commentId ? true : false
-  const commentInfo = useSelector((state)=>state.feed.myPosts);
+  const comment = useSelector((state) => state.post.comments);
+  console.log(comment)
+  const commentInfo = Object.values(comment)
+  // post modules에서 가져온 정보가 {0:{}, 1:{}} 형태로 되어 있어서 map을 돌릴 수 없었다.
+  // 처음에는 Object.key(comment)로 했었는 데 그럴 경우 {0,1,2,3...}이 되서
+  // Object.value(comment)로 했더니 값들이 잘 들어갔다.
 
-  if(check){ // 내 게시물 조회일 경우
-    console.log("게시물게시물 조회")
-    return (
-      <React.Fragment> 
-        {myCommentInfo.map((p) => {
-          return <CommentItem key={p.commentId} {...p}></CommentItem>;
-        })}
-      </React.Fragment>
-    );
-  }else{ // 랜덤한 게시물 조회일 경우
-    return (
-      <React.Fragment> 
-        {commentInfo.map((p) => {
-          return <CommentItem key={p.commentId} {...p}></CommentItem>;
-        })}
-      </React.Fragment>
-    );
-  }
+  return (
+    <React.Fragment>
+      {commentInfo.map((p) => {
+        return <CommentItem key={p.commentId} {...p}></CommentItem>;
+      })}
+    </React.Fragment>
+  );
 };
 
 const CommentItem = (props) => {
