@@ -71,7 +71,7 @@ const Feed = (props) => {
         <Text size="1.5em" bold>
           내가 답변한 글
         </Text>
-        <Grid is_flex padding="10px" width="auto" flexFlow>
+        <Grid is_flex padding="10px" width="auto" justifyContent>
           {feedInfo.myComments.map((c) => {
             return (
               <Post

@@ -20,6 +20,7 @@ const PostDetail = (props) => {
   const postInfo = useSelector((state) => state.post);
 
   React.useEffect(() => {
+
     // 랜덤한 게시물일 경우
     if (!params.postId && !postInfo.postId) {
       // 랜덤한 정보를 서버에 요청
@@ -68,32 +69,25 @@ const PostDetail = (props) => {
     return (
       <React.Fragment>
         <Header></Header>
-        <Grid margin="5% 0px 2% 0px">
+        <Grid margin="10% 0px 2% 0px">
           <Grid>
             {postInfo.imageUrl && (
               <img
                 src={`http://3.37.36.119${postInfo.imageUrl}`}
                 alt="게시물 사진"
-                width="50%"
+                width="25%"
               ></img>
             )}
           </Grid>
           <Grid margin="2% 0px 0px 0px">
-            <Text
-              border="1px solid"
-              margin="auto"
-              size="1em"
-              width="50%"
-              height="10vh"
-            >
+            <Text margin="auto" size="1em" width="40%" height="10vh">
               {postInfo.title}
             </Text>
             <Text
-              border="1px solid"
               margin="auto"
               size="1em"
-              width="50%"
-              height="50vh"
+              width="40%"
+              height="15vh"
             >
               {postInfo.content}
             </Text>
@@ -127,7 +121,7 @@ const PostDetail = (props) => {
     // 랜덤한 게시물일 경우
     <React.Fragment>
       <Header></Header>
-      <Grid margin="5% 0px 2% 0px">
+      <Grid margin="10% 0px 2% 0px">
         <Grid>
           {postInfo.imageUrl && (
             <img
@@ -138,21 +132,14 @@ const PostDetail = (props) => {
           )}
         </Grid>
         <Grid margin="2% 0px 0px 0px">
-          <Text
-            border="1px solid"
-            margin="auto"
-            size="1em"
-            width="50%"
-            height="10vh"
-          >
+          <Text margin="auto" size="1em" width="40%" height="10vh">
             {postInfo.title}
           </Text>
           <Text
-            border="1px solid"
             margin="auto"
             size="1em"
-            width="50%"
-            height="50vh"
+            width="40%"
+            height="15vh"
           >
             {postInfo.content}
           </Text>

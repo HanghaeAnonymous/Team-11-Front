@@ -34,6 +34,7 @@ const P = styled.p`
   font-weight: ${(props) => (props.bold ? "600" : "400")};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  line-height: ${(props) => props.height};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
 `;
 

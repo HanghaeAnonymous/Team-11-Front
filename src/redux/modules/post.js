@@ -35,6 +35,7 @@ const initialState = {
 // *** 미들웨어
 const randomPostFB = () => {
   return function (dispatch, getState, { history }) {
+    
     console.log("게시물 조회");
     const token = localStorage.getItem("user_token");
 
@@ -43,15 +44,16 @@ const randomPostFB = () => {
         headers: { Authorization: token },
       })
       .then((response) => {
-        console.log(response.data);
 
         if (response.data === "") {
-          history.replace("/");
           window.alert("게시물이 없습니다.");
+          history.replace("/");
           return;
         }
-        dispatch(getPost(response.data));
+
         console.log("게시물 조회 성공");
+        dispatch(getPost(response.data));
+        history.replace("/post");
       })
       .catch((err) => {
         console.log("게시물 조회 실패", err);
@@ -104,7 +106,6 @@ const myCommentFB = (commentId) => {
 
 const deletePostDB = (postId) => {
   return function (dispatch, getState, { history }) {
-    
     const token = localStorage.getItem("user_token");
 
     axios

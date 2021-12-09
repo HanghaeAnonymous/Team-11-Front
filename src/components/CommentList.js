@@ -28,7 +28,7 @@ const CommentItem = (props) => {
   const { commentId, comment, createdAt } = props;
   return (
     <React.Fragment>
-      <Grid is_flex margin="auto" width="70%">
+      <Grid is_flex margin="auto" width="50%">
         <Grid>
           <Text bold>익명</Text>
         </Grid>
