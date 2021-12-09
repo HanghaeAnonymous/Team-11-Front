@@ -82,7 +82,7 @@ const PostWrite = (props) => {
   return (
     <React.Fragment>
       <Header></Header>
-      <Grid>
+      <Grid margin="2% 0px 0px 0px">
         <input
           type="file"
           name="file"
@@ -100,7 +100,7 @@ const PostWrite = (props) => {
           업로드
         </Button>
       </Grid>{" "}
-      <Grid margin="5% 0px 2% 0px">
+      <Grid margin="1% 0px 1% 0px">
         <Grid is_flex>
           {preview ? (
             <Image
@@ -121,21 +121,23 @@ const PostWrite = (props) => {
         </Grid>
       </Grid>
       <Grid margin="2% 0px 0px 0px">
-        <Input
-          label="제목"
-          value={title}
-          placeholder="제목을 입력 해주세요"
-          _onChange={changeTitle}
-          _onKeyUp={checkActive}
-        ></Input>
-        <Input
-          label="게시글 내용"
-          value={contents}
-          placeholder="내용을 작성 해주세요"
-          multiLine
-          _onChange={changeContents}
-          _onKeyUp={checkActive}
-        />
+        <Grid margin="0px 0px 1% 0px">
+          <Input
+            value={title}
+            placeholder="제목을 입력 해주세요"
+            _onChange={changeTitle}
+            _onKeyUp={checkActive}
+          ></Input>
+        </Grid>
+        <Grid>
+          <Input
+            value={contents}
+            placeholder="내용을 작성 해주세요"
+            multiLine
+            _onChange={changeContents}
+            _onKeyUp={checkActive}
+          />
+        </Grid>
       </Grid>
       <Grid is_flex margin="40px 0px 40px 0px" center>
         <Button

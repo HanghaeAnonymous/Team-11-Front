@@ -75,7 +75,7 @@ Input.defaultProps = {
 
 const ElInput = styled.input`
   border: 1px solid #212121;
-  width: 40%;
+  width: 60%;
   ${(props) => (props.height ? `height : ${props.height};` : "")}
   padding: 12px 4px;
   box-sizing: border-box;
@@ -83,7 +83,7 @@ const ElInput = styled.input`
 
 const ElTextarea = styled.textarea`
   border: 1px solid #212121;
-  width: 40%;
+  width: 60%;
   padding: 12px 4px;
   box-sizing: border-box;
 `;
