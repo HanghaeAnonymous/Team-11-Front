@@ -1,7 +1,6 @@
 // *** 패키지 import
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import { setCookie, getCookie, deleteCookie } from "../../shared/Cookie";
 import { apis } from "../../shared/api";
 
 import axios from "axios";

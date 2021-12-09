@@ -8,11 +8,13 @@ import axios from "axios";
 // *** 액션 타입
 const GET_POST = "GET_POST";
 const SET_POST = "SET_POST";
+const EDIT_POST = "EDIT_POST";
 const ADD_COMMENT = "ADD_COMMENT";
 
 // *** 액션 생성 함수
 const setPost = createAction(SET_POST, (postList) => ({ postList }));
 const getPost = createAction(GET_POST, (postList) => ({ postList }));
+const editpost = createAction(EDIT_POST, (postId, post) => ({ postId, post }));
 const addComment = createAction(ADD_COMMENT, (commentList) => ({
   commentList,
 }));
@@ -33,10 +35,10 @@ const initialState = {
 };
 
 // *** 미들웨어
+
+// 랜덤 게시물 조회
 const randomPostFB = () => {
   return function (dispatch, getState, { history }) {
-    
-    console.log("게시물 조회");
     const token = localStorage.getItem("user_token");
 
     axios
@@ -44,7 +46,6 @@ const randomPostFB = () => {
         headers: { Authorization: token },
       })
       .then((response) => {
-
         if (response.data === "") {
           window.alert("게시물이 없습니다.");
           history.replace("/");
@@ -61,9 +62,9 @@ const randomPostFB = () => {
   };
 };
 
+// 내 게시물 조회
 const myPostFB = (postId) => {
   return function (dispatch, getState, { history }) {
-    console.log("내가 작성한 게시물 조회");
     const token = localStorage.getItem("user_token");
 
     axios
@@ -80,9 +81,9 @@ const myPostFB = (postId) => {
   };
 };
 
+// 내가 댓글을 작성한 게시물 조회
 const myCommentFB = (commentId) => {
   return function (dispatch, getState, { history }) {
-    console.log("내가 댓글을 작성한 게시물 조회");
     const token = localStorage.getItem("user_token");
 
     axios
@@ -104,6 +105,33 @@ const myCommentFB = (commentId) => {
   };
 };
 
+// 게시물 추가
+const addPostDB = (title, content, imageUrl) => {
+  return function (dispatch, getState, { history }) {
+    const token = localStorage.getItem("user_token");
+    axios
+      .post(
+        `http://3.37.36.119/api/posts`,
+
+        { title: title, content: content, imageUrl: imageUrl },
+        {
+          headers: { Authorization: token },
+        } // 400일때 헤더가 있는데 서버측에서 헤더가 없다고 하면 데이터값 뒤로 헤더를 빼주자
+      )
+      .then((response) => {
+        console.log(response);
+        // dispatch(addpost(title, content, imageUrl));
+        history.replace("/");
+      })
+      .catch((err) => {
+        console.log("글을 작성하려면 로그인을 하세요!", err);
+      });
+  };
+};
+
+// 게시물 수정
+
+// 게시물 삭제
 const deletePostDB = (postId) => {
   return function (dispatch, getState, { history }) {
     const token = localStorage.getItem("user_token");
@@ -113,7 +141,7 @@ const deletePostDB = (postId) => {
         headers: { Authorization: token },
       })
       .then((response) => {
-        console.log(response);
+        console.log("게시물 삭제 성공");
       })
       .catch((err) => {
         console.log("게시물 삭제 실패", err);
@@ -121,6 +149,7 @@ const deletePostDB = (postId) => {
   };
 };
 
+// 댓글 작성
 const addCommentFB = (postId, comment) => {
   return function (dispatch, getState, { history }) {
     console.log("댓글 작성");
@@ -183,9 +212,10 @@ const actionCreators = {
   setPost,
   getPost,
   randomPostFB,
-  deletePostDB,
   myPostFB,
   myCommentFB,
+  addPostDB,
+  deletePostDB,
   addCommentFB,
 };
 

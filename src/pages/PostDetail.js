@@ -69,13 +69,13 @@ const PostDetail = (props) => {
     return (
       <React.Fragment>
         <Header></Header>
-        <Grid margin="10% 0px 2% 0px">
+        <Grid margin="6% 0px 1% 0px">
           <Grid>
             {postInfo.imageUrl && (
               <img
                 src={`http://3.37.36.119${postInfo.imageUrl}`}
                 alt="게시물 사진"
-                width="25%"
+                width="50%"
               ></img>
             )}
           </Grid>

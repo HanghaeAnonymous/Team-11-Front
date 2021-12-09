@@ -9,8 +9,6 @@ import { actionCreators as userActions } from "../redux/modules/user";
 
 import { Grid, Button, Input, Text } from "../elements/index";
 import SignUp from "../pages/SignUp";
-import { useHistory } from "react-router";
-import axios from "axios";
 
 const Login = (props) => {
   const [username, setId] = React.useState(""); // 아이디
