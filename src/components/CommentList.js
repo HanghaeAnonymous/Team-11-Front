@@ -10,7 +10,6 @@ import { Grid, Button, Text, Input } from "../elements/index";
 const CommentList = (props) => {
 
   const comment = useSelector((state) => state.post.comments);
-  console.log(comment)
   const commentInfo = Object.values(comment)
   // post modules에서 가져온 정보가 {0:{}, 1:{}} 형태로 되어 있어서 map을 돌릴 수 없었다.
   // 처음에는 Object.key(comment)로 했었는 데 그럴 경우 {0,1,2,3...}이 되서
