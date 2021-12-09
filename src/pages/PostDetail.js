@@ -86,8 +86,8 @@ const PostDetail = (props) => {
             <Text
               margin="auto"
               size="1em"
-              width="40%"
-              height="15vh"
+              width="30%"
+              padding="3%"
             >
               {postInfo.content}
             </Text>

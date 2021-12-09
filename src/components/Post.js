@@ -50,7 +50,19 @@ const Post = (props) => {
       >
         <Card.Header>[{props.title}]</Card.Header>
         <Card.Body>
-          <Card.Text>{props.content}</Card.Text>
+          <Card.Text
+            style={{
+              width: "200px",
+              height: "200px",
+              textAlign: "center",
+              margin: "auto",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
+          >
+            {props.content}
+          </Card.Text>
         </Card.Body>
       </Card>
       <br />
