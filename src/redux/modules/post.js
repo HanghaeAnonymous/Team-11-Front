@@ -123,7 +123,7 @@ const addCommentFB = (postId, comment) => {
         console.log("댓글 작성 성공");
 
         const _comment = {
-          commentId: getState().post.comments[0].commentId + 1,
+          commentId: getState().post.postId + 1,
           comment: comment,
           createdAt: moment().format("YYYY-MM-DD"),
         };

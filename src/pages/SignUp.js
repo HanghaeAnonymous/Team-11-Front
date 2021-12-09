@@ -132,13 +132,17 @@ const SignUp = (props) => {
   // 비밀번호 일치 여부
   const isSamePwd = (e) => {
     setPwdCheck(e.target.value);
+    const regPwd = /^(?=.*\d)(?=.*[a-zA-Z])[0-9a-zA-Z]{3,20}$/;
     const SamePwdCurrent = e.target.value;
 
-    if (password !== "" && passwordCheck !== "" && password === SamePwdCurrent) {
+    if(!regPwd.test(SamePwdCurrent)){
+      setPwdCheckMessage("형식에 맞지 않는 비밀번호입니다.. 다시 확인 해주세요!")
+      setIsPwdCheck(false);
+    }else if (password !== "" && passwordCheck !== "" && password === SamePwdCurrent) {
       setPwdCheckMessage("비밀번호가 같아요 :)");
       setIsPwdCheck(true);
-    } else {
-      setPwdCheckMessage("비밀번호가 틀려요... 다시 확인해주세요!");
+    }else {
+      setPwdCheckMessage("비밀번호가 틀려요... 다시 확인 해주세요!");
       setIsPwdCheck(false);
     }
   };
