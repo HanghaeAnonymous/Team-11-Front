@@ -48,7 +48,19 @@ const Post = (props) => {
         }}
         onClick={_onClick}
       >
-        <Card.Header>[{props.title}]</Card.Header>
+        <Card.Header
+          style={{
+            width: "200px",
+            height: "120px",
+            textAlign: "center",
+            margin: "auto",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+            whiteSpace: "nowrap",
+          }}
+        >
+          [{props.title}]
+        </Card.Header>
         <Card.Body>
           <Card.Text
             style={{

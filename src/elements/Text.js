@@ -39,6 +39,7 @@ const P = styled.p`
   line-height: ${(props) => props.height};
   ${(props) => (props.margin ? `margin: ${props.margin};` : "")};
   ${(props) => (props.padding ? `padding: ${props.padding};` : "")};
+  word-wrap: break-word;
 `;
 
 export default Text;
