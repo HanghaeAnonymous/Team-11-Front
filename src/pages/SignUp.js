@@ -14,6 +14,7 @@ import axios from "axios";
 const SignUp = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const token = localStorage.getItem("user_token");
 
   // 모달창 열렸는지 여부
   const [modalIsOpen, setModalIsOpen] = React.useState(
@@ -29,6 +30,9 @@ const SignUp = (props) => {
   const [idMessage, setIdMessage] = React.useState("");
   const [pwdMessage, setPwdMessage] = React.useState("");
   const [pwdCheckMessage, setPwdCheckMessage] = React.useState("");
+
+  // 아이디 중복 체크
+  const [overlap, setOverlap] = React.useState();
 
   // 유효성 검사
   const [isId, setIsId] = React.useState("");
@@ -50,12 +54,32 @@ const SignUp = (props) => {
 
   /* disabled 체크 */
   const checkActive = () => {
+    overlap &&
     username !== "" &&
     password !== "" &&
     passwordCheck !== "" &&
     password === passwordCheck
       ? setActive(false)
       : setActive(true);
+  };
+
+  // id 중복 검사
+  const overlapCheck = () => {
+    axios
+      .post(
+        "http://3.37.36.119/api/idCheck",
+        { username: username },
+        { headers: { Authorization: token } }
+      )
+      .then((response) => {
+        console.log("중복 검사 성공");
+        setOverlap(response.data.result)
+        // 아이디가 중복되지 않은 경우 true 반환
+        // 아이디가 중복인 경우 false 반환
+      })
+      .catch((err) => {
+        console.log("중복 검사 실패");
+      });
   };
 
   // 아이디 유효성 검사
@@ -107,9 +131,9 @@ const SignUp = (props) => {
   //  -> 보통은 다른 함수 안에서 실행하고 onClick에 넣어줬는데 그렇게 안해서 400이 뜨나?
   const signUpCheck = () => {
     dispatch(userActions.signUpDB(username, password, passwordCheck));
-    setModalIsOpen(false)
-    props.setSignUpModal(false)
-    props.setLoginModal(true) // 회원가입 성공 시 로그인 모달창 띄움
+    setModalIsOpen(false);
+    props.setSignUpModal(false);
+    props.setLoginModal(true); // 회원가입 성공 시 로그인 모달창 띄움
   };
 
   // 뷰
@@ -132,7 +156,7 @@ const SignUp = (props) => {
           <Text size="3vw" bold>
             회원가입
           </Text>
-          <Grid padding="16px 0px" height="20%">
+          <Grid padding="0px 0px" height="20%">
             {/* <form action="http://3.37.36.119/api/signup" method="post"> */}
             <Input
               label="아이디"
@@ -141,12 +165,23 @@ const SignUp = (props) => {
               value={username}
               _onChange={idCheck}
               _onKeyUp={checkActive}
-            /><br/>
+            />
             {username.length > 0 && (
-              <Span size="3px" className={`${isId ? "success" : "error"}`}>
-                {idMessage}
-              </Span>
-            )}<br/>
+              <>
+                <br />
+                <Span size="3px" className={`${isId ? "success" : "error"}`}>
+                  {idMessage}
+                </Span>
+              </>
+            )}
+            <br />
+            <Button
+              text="중복검사"
+              width="18vw"
+              margin="3% 0px 3% 0px"
+              _onClick={overlapCheck}
+            ></Button>
+            <br />
             {/* <form action="http://3.37.36.119/api/signup" method="post"> */}
 
             <Input
@@ -156,13 +191,16 @@ const SignUp = (props) => {
               value={password}
               _onChange={pwdCheck}
               _onKeyUp={checkActive}
-            /><br/>
+            />
             {password.length > 0 && (
-              <Span size="3px" className={`${isPwd ? "success" : "error"}`}>
-                {pwdMessage}
-              </Span>
-            )}<br/>
-
+              <>
+                <br />
+                <Span size="3px" className={`${isPwd ? "success" : "error"}`}>
+                  {pwdMessage}
+                </Span>
+              </>
+            )}
+            <br />
             <Input
               label="비밀번호 확인"
               placeholder="비밀번호를 다시 입력하세요."
@@ -170,15 +208,19 @@ const SignUp = (props) => {
               value={passwordCheck}
               _onChange={isSamePwd}
               _onKeyUp={checkActive}
-            /><br/>
+            />
             {passwordCheck.length > 0 && (
-              <Span
-                size="3px"
-                className={`${isPwdCheck ? "success" : "error"}`}
-              >
-                {pwdCheckMessage}
-              </Span>
-            )}<br/>
+              <>
+                <br />
+                <Span
+                  size="3px"
+                  className={`${isPwdCheck ? "success" : "error"}`}
+                >
+                  {pwdCheckMessage}
+                </Span>
+              </>
+            )}
+            <br />
 
             <Button
               text="회원가입하기"
