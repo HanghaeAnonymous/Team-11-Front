@@ -32,7 +32,7 @@ const SignUp = (props) => {
   const [pwdCheckMessage, setPwdCheckMessage] = React.useState("");
 
   // 아이디 중복 체크
-  const [overlap, setOverlap] = React.useState();
+  const [overlap, setOverlap] = React.useState(false);
 
   // 유효성 검사
   const [isId, setIsId] = React.useState("");
@@ -73,16 +73,24 @@ const SignUp = (props) => {
       )
       .then((response) => {
         console.log("중복 검사 성공");
-        setOverlap(response.data.result)
         // 아이디가 중복되지 않은 경우 true 반환
         // 아이디가 중복인 경우 false 반환
 
-        if(response.data.result) { 
-          setIdMessage("사용 가능한 아이디입니다.")
-          setIsId(true);
-        }else{
-          setIdMessage("사용 불가능한 아이디입니다.")
-          setIsId(false);
+        // 사용 가능한 아이디일 경우
+        if (response.data.result) {
+          setIsId(true); // 유효성 검사 true
+          setOverlap(response.data.result); // 중복 검사 true
+          setIdMessage("사용 가능한 아이디입니다."); // span 태그
+
+          // 비밀번호를 입력 안했을 경우 회원가입 버튼 비활성화
+          if(password === passwordCheck){
+            setActive(false);
+          }
+        } else { // 사용 할 수 없느 아이디일 경우
+          setIsId(false); // 유효성 검사 false
+          setOverlap(response.data.result); // 중복 검사 false
+          setIdMessage("중복된 아이디입니다."); // span 태그
+          setActive(true); // 사용 할 수 없는 아이디일 경우 회원가입 버튼 비활성화
         }
       })
       .catch((err) => {
@@ -126,7 +134,7 @@ const SignUp = (props) => {
     setPwdCheck(e.target.value);
     const SamePwdCurrent = e.target.value;
 
-    if (password === SamePwdCurrent) {
+    if (password !== "" && passwordCheck !== "" && password === SamePwdCurrent) {
       setPwdCheckMessage("비밀번호가 같아요 :)");
       setIsPwdCheck(true);
     } else {
