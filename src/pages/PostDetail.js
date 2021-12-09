@@ -52,7 +52,7 @@ const PostDetail = (props) => {
     const deleteCheck = window.confirm("게시물을 삭제 하시겠습니까?");
 
     if (deleteCheck) {
-      dispatch(postActions.deletePostFB(postInfo.postId));
+      dispatch(postActions.deletePostDB(params.postId));
       window.alert("게시물이 삭제 되었습니다.");
       history.replace("/");
     }
@@ -70,11 +70,9 @@ const PostDetail = (props) => {
         <Header></Header>
         <Grid margin="5% 0px 2% 0px">
           <Grid>
-            {postInfo.image ? (
-              <img src={postInfo.image} alt="게시물 사진" width="50%"></img>
-            ) : (
+            {postInfo.imageUrl && (
               <img
-                src="https://img.insight.co.kr/static/2021/01/10/700/img_20210110130830_kue82l80.webp"
+                src={`http://3.37.36.119${postInfo.imageUrl}`}
                 alt="게시물 사진"
                 width="50%"
               ></img>
@@ -131,11 +129,9 @@ const PostDetail = (props) => {
       <Header></Header>
       <Grid margin="5% 0px 2% 0px">
         <Grid>
-          {postInfo.image ? (
-            <img src={postInfo.image} alt="게시물 사진" width="50%"></img>
-          ) : (
+          {postInfo.imageUrl && (
             <img
-              src="https://img.insight.co.kr/static/2021/01/10/700/img_20210110130830_kue82l80.webp"
+              src={`http://3.37.36.119${postInfo.imageUrl}`}
               alt="게시물 사진"
               width="50%"
             ></img>

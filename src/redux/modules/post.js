@@ -22,6 +22,7 @@ const initialState = {
   postId: null,
   title: null,
   content: null,
+  imageUrl: null,
   comments: [
     {
       commentId: null,
@@ -101,9 +102,21 @@ const myCommentFB = (commentId) => {
   };
 };
 
-const deletePostFB = () => {
+const deletePostDB = (postId) => {
   return function (dispatch, getState, { history }) {
-    console.log("게시물 삭제");
+    
+    const token = localStorage.getItem("user_token");
+
+    axios
+      .delete(`http://3.37.36.119/api/posts/${postId}`, {
+        headers: { Authorization: token },
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((err) => {
+        console.log("게시물 삭제 실패", err);
+      });
   };
 };
 
@@ -150,6 +163,7 @@ export default handleActions(
       return produce(state, (draft) => {
         draft.postId = action.payload.postList.postId;
         draft.title = action.payload.postList.title;
+        draft.imageUrl = action.payload.postList.imageUrl;
         draft.content = action.payload.postList.content;
         draft.comments = { ...action.payload.postList.comments };
       });
@@ -168,7 +182,7 @@ const actionCreators = {
   setPost,
   getPost,
   randomPostFB,
-  deletePostFB,
+  deletePostDB,
   myPostFB,
   myCommentFB,
   addCommentFB,
