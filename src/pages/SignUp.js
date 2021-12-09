@@ -54,7 +54,7 @@ const SignUp = (props) => {
 
   /* disabled 체크 */
   const checkActive = () => {
-    overlap &&
+    overlap === true &&
     username !== "" &&
     password !== "" &&
     passwordCheck !== "" &&
@@ -76,6 +76,14 @@ const SignUp = (props) => {
         setOverlap(response.data.result)
         // 아이디가 중복되지 않은 경우 true 반환
         // 아이디가 중복인 경우 false 반환
+
+        if(response.data.result) { 
+          setIdMessage("사용 가능한 아이디입니다.")
+          setIsId(true);
+        }else{
+          setIdMessage("사용 불가능한 아이디입니다.")
+          setIsId(false);
+        }
       })
       .catch((err) => {
         console.log("중복 검사 실패");

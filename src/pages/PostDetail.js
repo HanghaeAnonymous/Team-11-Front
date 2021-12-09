@@ -18,14 +18,12 @@ const PostDetail = (props) => {
   const params = useParams();
 
   const postInfo = useSelector((state) => state.post);
-  console.log(postInfo.postId)
 
   React.useEffect(() => {
     // 랜덤한 게시물일 경우
-    if (!params.postId && !postInfo) {
+    if (!params.postId && !postInfo.postId) {
       // 랜덤한 정보를 서버에 요청
       dispatch(postActions.randomPostFB());
-      return;
     }
 
     // 내 게시물일 경우
