@@ -11,11 +11,11 @@ const SET_POST = "SET_POST";
 const ADD_POST = "SET_POST";
 const EDIT_POST = "EDIT_POST";
 const ADD_COMMENT = "ADD_COMMENT";
+const DELETE_COMMENT = "DELETE_COMMENT";
 
 // *** 액션 생성 함수
 const setPost = createAction(SET_POST, (postList) => ({ postList }));
 const getPost = createAction(GET_POST, (postList) => ({ postList }));
-const editpost = createAction(EDIT_POST, (postId, post) => ({ postId, post }));
 const addComment = createAction(ADD_COMMENT, (commentList) => ({
   commentList,
 }));
@@ -156,6 +156,7 @@ const editPostDB = (postId, content, imageUrl) => {
       });
   };
 };
+
 // 게시물 삭제
 const deletePostDB = (postId) => {
   return function (dispatch, getState, { history }) {

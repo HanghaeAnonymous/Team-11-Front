@@ -60,10 +60,9 @@ const EditPost = (props) => {
         </Grid>
       </Grid>
       <Grid margin="2% 0px 0px 0px">
-        <Grid margin="0px 0px 1% 0px"></Grid>
         <Grid>
-          <p style={{ width: "45%" }}>{wasTitle}</p>
-          <Input rows="10" multiLine _onChange={changeContents}>
+          <p style={{ width: "45%", margin : "auto", marginBottom : "2%" }}>{wasTitle}</p>
+          <Input rows="10" postMultiLine _onChange={changeContents}>
             {wasContent}
           </Input>
         </Grid>

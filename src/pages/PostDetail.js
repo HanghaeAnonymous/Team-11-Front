@@ -2,6 +2,7 @@
 
 // *** 패키지 import
 import React from "react";
+import styled from "styled-components";
 import { Grid, Button, Text } from "../elements/index";
 import { useHistory, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -55,7 +56,7 @@ const PostDetail = (props) => {
     if (deleteCheck) {
       dispatch(postActions.deletePostDB(params.postId));
       window.alert("게시물이 삭제 되었습니다.");
-      history.replace("/feed");
+      window.location.href = "/feed";
     }
   };
 
@@ -71,19 +72,22 @@ const PostDetail = (props) => {
         <Header></Header>
         <Grid margin="6% 0px 1% 0px">
           <Grid>
-            {postInfo.imageUrl && (
+            {postInfo.imageUrl ? (
               <img
                 src={`http://3.37.36.119${postInfo.imageUrl}`}
                 alt="게시물 사진"
-                width="50%"
+                width="30%"
               ></img>
+            ) : (
+              <Grid margin="15% 0px 0px 0px"></Grid>
             )}
           </Grid>
           <Grid margin="2% 0px 0px 0px">
-            <Text margin="auto" size="1em" width="40%" height="10vh">
+            <Text margin="auto" bold size="2em" width="40%" height="5vh">
               {postInfo.title}
             </Text>
-            <Text margin="auto" size="1em" width="40%" padding="3%">
+            <Hr />
+            <Text margin="auto" size="1.5em" width="40%" height="5vh">
               {postInfo.content}
             </Text>
           </Grid>
@@ -105,7 +109,7 @@ const PostDetail = (props) => {
         <Grid>
           <CommentWrite></CommentWrite>
         </Grid>
-        <Grid>
+        <Grid margin="0px 0px 3% 0px">
           <CommentList></CommentList>
         </Grid>
       </React.Fragment>
@@ -116,21 +120,24 @@ const PostDetail = (props) => {
     // 랜덤한 게시물일 경우
     <React.Fragment>
       <Header></Header>
-      <Grid margin="10% 0px 2% 0px">
+      <Grid margin="6% 0px 2% 0px">
         <Grid>
-          {postInfo.imageUrl && (
+          {postInfo.imageUrl ? (
             <img
               src={`http://3.37.36.119${postInfo.imageUrl}`}
               alt="게시물 사진"
-              width="50%"
+              width="30%"
             ></img>
+          ) : (
+            <Grid margin="15% 0px 0px 0px"></Grid>
           )}
         </Grid>
         <Grid margin="2% 0px 0px 0px">
-          <Text margin="auto" size="1em" width="40%" height="10vh">
+          <Text margin="auto" bold size="2em" width="40%" height="5vh">
             {postInfo.title}
           </Text>
-          <Text margin="auto" size="1em" width="40%" height="15vh">
+          <Hr />
+          <Text margin="auto" size="1.5em" width="40%" height="5vh">
             {postInfo.content}
           </Text>
         </Grid>
@@ -146,11 +153,15 @@ const PostDetail = (props) => {
       <Grid>
         <CommentWrite></CommentWrite>
       </Grid>
-      <Grid>
+      <Grid margin="0px 0px 3% 0px">
         <CommentList></CommentList>
       </Grid>
     </React.Fragment>
   );
 };
+
+const Hr = styled.hr`
+  width: 35%;
+`;
 
 export default PostDetail;

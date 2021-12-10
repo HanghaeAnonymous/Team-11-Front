@@ -124,6 +124,7 @@ const PostWrite = (props) => {
         <Grid margin="0px 0px 1% 0px">
           <Input
             value={title}
+            postInput
             placeholder="제목을 입력 해주세요"
             _onChange={changeTitle}
             _onKeyUp={checkActive}
@@ -133,7 +134,8 @@ const PostWrite = (props) => {
           <Input
             value={contents}
             placeholder="내용을 작성 해주세요"
-            multiLine
+            rows="10"
+            postMultiLine
             _onChange={changeContents}
             _onKeyUp={checkActive}
           />

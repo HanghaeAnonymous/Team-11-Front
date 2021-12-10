@@ -11,22 +11,13 @@ const Post = (props) => {
 
   if (noWrap) {
     return (
-      <div
-        style={{
-          width: "100%",
-          padding: "1% 0px 0px 0px",
-          borderRadius: "10px",
-          margin: "1% 1% 1% 1%",
-          height: "30px",
-          border: "1px solid black",
-        }}
-      >
-        <Grid _onClick={_onClick} is_flex>
+      <div style={{marginBottom : "2%"}}>
+        <Grid _onClick={_onClick} noWrap is_flex>
           <Grid>
-            <Text margin="0px">{props.comment}</Text>
+            <Text width="350px" margin="auto">{props.comment}</Text>
           </Grid>
           <Grid>
-            <Text margin="0px">{props.createdAt}</Text>
+            <Text width="350px" margin="auto">{props.createdAt}</Text>
           </Grid>
         </Grid>
       </div>

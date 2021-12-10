@@ -17,6 +17,7 @@ const Grid = (props) => {
     _onClick,
     flexFlow,
     justifyContent,
+    noWrap,
   } = props;
 
   const styles = {
@@ -30,6 +31,17 @@ const Grid = (props) => {
     center: center,
     flexFlow: flexFlow,
   };
+
+  if (noWrap) {
+    return (
+      <React.Fragment>
+        <NoWrap onClick={_onClick} {...styles}>
+          {children}
+        </NoWrap>
+      </React.Fragment>
+    );
+  }
+
   return (
     <React.Fragment>
       <GridBox onClick={_onClick} {...styles}>
@@ -69,6 +81,13 @@ const GridBox = styled.div`
     props.justifyContent
       ? "justify-content: flex-start;"
       : "justify-content: space-evenly;"}
+`;
+
+const NoWrap = styled.div`
+  width: 450px;
+  border-radius: 100px;
+  height: 30px;
+  border: 1px solid black;
 `;
 
 export default Grid;
