@@ -5,12 +5,14 @@ import { Text, Grid } from "./index";
 
 const Input = (props) => {
   const {
+    children,
     label,
     placeholder,
     _onChange,
     _onKeyUp,
     type,
     multiLine,
+    rows,
     value,
     is_submit,
     onSubmit,
@@ -21,12 +23,13 @@ const Input = (props) => {
       <>
         {label && <Text margin="0px">{label}</Text>}
         <ElTextarea
-          rows={10}
-          value={value}
+          rows={rows}
           placeholder={placeholder}
           onKeyUp={_onKeyUp}
           onChange={_onChange}
-        ></ElTextarea>
+        >
+          {children}
+        </ElTextarea>
       </>
     );
   }
@@ -62,11 +65,13 @@ const Input = (props) => {
 };
 
 Input.defaultProps = {
+  children: null,
   label: false,
   placeholder: "텍스트를 입력해주세요.",
   type: "text",
   value: "",
   multiLine: false,
+  rows: "",
   is_submit: false,
   onSubmit: () => {},
   _onChange: () => {},
@@ -86,6 +91,7 @@ const ElTextarea = styled.textarea`
   width: 60%;
   padding: 12px 4px;
   box-sizing: border-box;
+  ${(props) => (props.value ? `value : ${props.value};` : "")}
 `;
 
 export default Input;
