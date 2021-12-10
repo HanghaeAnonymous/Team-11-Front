@@ -20,7 +20,6 @@ const PostDetail = (props) => {
   const postInfo = useSelector((state) => state.post);
 
   React.useEffect(() => {
-
     // 랜덤한 게시물일 경우
     if (!params.postId && !postInfo.postId) {
       // 랜덤한 정보를 서버에 요청
@@ -83,12 +82,7 @@ const PostDetail = (props) => {
             <Text margin="auto" size="1em" width="40%" height="10vh">
               {postInfo.title}
             </Text>
-            <Text
-              margin="auto"
-              size="1em"
-              width="40%"
-              padding="3%"
-            >
+            <Text margin="auto" size="1em" width="40%" padding="3%">
               {postInfo.content}
             </Text>
           </Grid>
@@ -135,12 +129,7 @@ const PostDetail = (props) => {
           <Text margin="auto" size="1em" width="40%" height="10vh">
             {postInfo.title}
           </Text>
-          <Text
-            margin="auto"
-            size="1em"
-            width="40%"
-            height="15vh"
-          >
+          <Text margin="auto" size="1em" width="40%" padding="3%">
             {postInfo.content}
           </Text>
         </Grid>
