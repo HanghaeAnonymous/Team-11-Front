@@ -36,17 +36,16 @@ const Header = (props) => {
   if (user_token) {
     return (
       <React.Fragment>
-        <Grid is_flex padding="4px 16px">
+        <Grid is_flex padding="4px 16px" margin="-3% 0px 0px 0px">
           <Grid _onClick={() => (window.location.href = "/")}>
             <Logo src={logo}></Logo>
           </Grid>
 
           <Grid is_flex>
             <Button
-              position="fixed"
-              width="14.8%"
+              width="25%"
               height="5.8%"
-              margin="3% 0px 0px 0px"
+              margin="1% 0% 0px 0%"
               _onClick={() => {
                 history.push("/feed");
               }}
@@ -54,10 +53,9 @@ const Header = (props) => {
               피드
             </Button>
             <Button
-              position="fixed"
-              width="15%"
+              width="25%"
               height="5.8%"
-              margin="3% 0px 0px 30%"
+              margin="1% 20% 0px -13%"
               _onClick={logOut}
             >
               로그아웃
@@ -70,17 +68,16 @@ const Header = (props) => {
 
   return (
     <div style={{ overflow: "hidden" }}>
-      <Grid is_flex padding="4px 16px">
+      <Grid is_flex padding="4px 16px" margin="-3% 0px 0px 0px">
         <Grid _onClick={() => (window.location.href = "/")}>
           <Logo src={logo}></Logo>
         </Grid>
 
         <Grid is_flex>
           <Button
-            position="fixed"
-            width="14.8%"
+            width="25%"
             height="5.8%"
-            margin="3% 0px 0px 0px"
+            margin="1% 0% 0px 0px"
             _onClick={loginModalOpen}
           >
             로그인
@@ -93,23 +90,11 @@ const Header = (props) => {
                 setSignUpModal={setSignUpModal}
               ></Login>
             )
-            // 기존 코드 loginModal && <Login modal={loginModal}></Login>에서는
-            // login modal이 꺼지더라도 loginModal은 true이기 때문에 버튼을 누를 수 없습니다.
-
-            // 수정 코드에서는 setLoginModal이라는 key 값에 setLoginModal state 변경 함수를
-            // value로 넘겨서 자식 컴포넌트에서 부모 컴포넌트의 state를 변경 할 수 있도록 하였습니다.
-
-            // + Header에서 로그인을 누를 때 사용자가 이동 할 수 있는 경로는 2가지 입니다.
-            // 1) 헤더 로그인 버튼 클릭 -> 로그인 기능 이용
-            // : 이 경우에는 setLoginModal만 가져가서 modal창이 닫힐 때 false로 바꿔주면 됩니다.
-            // 2) 헤더 로그인 버튼 클릭 -> 회원가입 버튼 클릭 -> 회원가입 기능 이용
-            // : 이 경우에는 loginModal, signUpModal 둘 다 true가 되기 때문에 둘 다 false로 바꿔줘야 합니다.
           }
           <Button
-            position="fixed"
-            width="15%"
+            width="25%"
             height="5.8%"
-            margin="3% 0px 0px 30%"
+            margin="1% 20% 0px -13%"
             _onClick={signUpModalOpen}
           >
             회원가입
@@ -130,8 +115,7 @@ const Header = (props) => {
 const Logo = styled.img`
   width: 18%;
   height: 23%;
-  position: fixed;
-  margin: -3% 0px 0px -17%;
+  margin: 3% 0px 0px 10%;
   cursor: pointer;
 `;
 

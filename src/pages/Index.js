@@ -25,7 +25,7 @@ const Index = (props) => {
   return (
     <div>
       <Header></Header>
-      <Grid padding="1%">
+      <Grid>
         <Text size="2vw" bold>
           익명의 멘탈 케어 사용 설명서
         </Text>

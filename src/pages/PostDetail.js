@@ -79,7 +79,7 @@ const PostDetail = (props) => {
                 width="30%"
               ></img>
             ) : (
-              <Grid margin="15% 0px 0px 0px"></Grid>
+              <Grid margin="8% 0px 0px 0px"></Grid>
             )}
           </Grid>
           <Grid margin="2% 0px 0px 0px">
@@ -129,7 +129,7 @@ const PostDetail = (props) => {
               width="30%"
             ></img>
           ) : (
-            <Grid margin="15% 0px 0px 0px"></Grid>
+            <Grid margin="8% 0px 0px 0px"></Grid>
           )}
         </Grid>
         <Grid margin="2% 0px 0px 0px">

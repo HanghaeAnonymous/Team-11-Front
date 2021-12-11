@@ -43,7 +43,7 @@ const Feed = (props) => {
   return (
     <React.Fragment>
       <Header></Header>
-      <Grid center margin="10% 0px 0px 0px">
+      <Grid center margin="1% 0px 0px 0px">
         <Text size="1.5em" bold>
           내가 작성한 글
         </Text>
