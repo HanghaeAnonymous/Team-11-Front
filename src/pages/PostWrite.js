@@ -82,7 +82,7 @@ const PostWrite = (props) => {
   return (
     <React.Fragment>
       <Header></Header>
-      <Grid margin="2% 0px 0px 0px">
+      <Grid>
         <input
           cursor="pointer"
           type="file"

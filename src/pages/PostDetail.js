@@ -70,7 +70,7 @@ const PostDetail = (props) => {
     return (
       <React.Fragment>
         <Header></Header>
-        <Grid margin="6% 0px 1% 0px">
+        <Grid margin="1% 0px 1% 0px">
           <Grid>
             {postInfo.imageUrl ? (
               <img
@@ -120,7 +120,7 @@ const PostDetail = (props) => {
     // 랜덤한 게시물일 경우
     <React.Fragment>
       <Header></Header>
-      <Grid margin="6% 0px 2% 0px">
+      <Grid margin="1% 0px 1% 0px">
         <Grid>
           {postInfo.imageUrl ? (
             <img
