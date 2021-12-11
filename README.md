@@ -90,14 +90,17 @@
 ## ⚒️ 11조 와이어 프레임
  <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FcX8PiK%2FbtrnyHwC5aj%2F5h3z7CSSEVEKcdW2FnH7u0%2Fimg.png" width="600" height="500"/>
 
-## ✌🏻 개인 역할
+## ✌🏻 개인 역할 및 트러블슈팅 해결과정
 
 <code>오은희</code> 로그인(모달 창으로 구현), 로그아웃, 댓글 작성, 게시글 및 댓글 불러오기(상세 페이지 및 피드 페이지), 뷰 구현, 스크롤바 숨김 기능,  css디자인
 
 <code>우민기</code> 회원가입(모달 창으로 구현), 게시글 작성, 수정, 삭제, 이미지 업로드, css디자인
 
+<code>Trouble Shooting</code>[트러블 슈팅 해결과정](https://chrome-armadillo-b80.notion.site/ac9cfa6f72eb401692f490c3c1420c30)
 
 </br>
+
+
 
 
 
