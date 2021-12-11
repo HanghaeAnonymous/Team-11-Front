@@ -84,16 +84,18 @@ const PostWrite = (props) => {
       <Header></Header>
       <Grid margin="2% 0px 0px 0px">
         <input
+          cursor="pointer"
           type="file"
           name="file"
+          id="input-file"
           encType="multipart/form-data"
           onChange={selectFile}
           ref={fileInput}
         />
         <Button
           cusror="pointer"
-          height="30px"
-          width="8%"
+          height="4%"
+          width="6%"
           margin="30px 0px -20px -60px"
           _onClick={uploadDB}
         >

@@ -145,7 +145,7 @@ const PostDetail = (props) => {
       <Grid margin="1% 0px 1% 0px">
         <Button
           text="넘어가기"
-          width="20vw"
+          width="10vw"
           margin="auto"
           _onClick={nextPost}
         ></Button>

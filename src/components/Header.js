@@ -1,11 +1,11 @@
 // Header.js
-
+import logo from "../shared/images/logo.png";
 // *** 패키지 import
 import React from "react";
 import { useHistory } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
-
+import styled from "styled-components";
 import { Grid, Button, Text } from "../elements/index";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
@@ -38,21 +38,30 @@ const Header = (props) => {
       <React.Fragment>
         <Grid is_flex padding="4px 16px">
           <Grid _onClick={() => (window.location.href = "/")}>
-            <Text margin="0px" size="20px" bold>
-              익명의멘탈케어
-            </Text>
+            <Logo src={logo}></Logo>
           </Grid>
 
           <Grid is_flex>
             <Button
+              position="fixed"
+              width="14.8%"
+              height="5.8%"
+              margin="3% 0px 0px 0px"
               _onClick={() => {
                 history.push("/feed");
               }}
             >
-              {" "}
               피드
             </Button>
-            <Button _onClick={logOut}>로그아웃</Button>
+            <Button
+              position="fixed"
+              width="15%"
+              height="5.8%"
+              margin="3% 0px 0px 30%"
+              _onClick={logOut}
+            >
+              로그아웃
+            </Button>
           </Grid>
         </Grid>
       </React.Fragment>
@@ -63,13 +72,19 @@ const Header = (props) => {
     <div style={{ overflow: "hidden" }}>
       <Grid is_flex padding="4px 16px">
         <Grid _onClick={() => (window.location.href = "/")}>
-          <Text margin="0px" size="24px" bold>
-            익명의멘탈케어
-          </Text>
+          <Logo src={logo}></Logo>
         </Grid>
 
         <Grid is_flex>
-          <Button _onClick={loginModalOpen}>로그인</Button>
+          <Button
+            position="fixed"
+            width="14.8%"
+            height="5.8%"
+            margin="3% 0px 0px 0px"
+            _onClick={loginModalOpen}
+          >
+            로그인
+          </Button>
           {
             loginModal && (
               <Login
@@ -90,7 +105,15 @@ const Header = (props) => {
             // 2) 헤더 로그인 버튼 클릭 -> 회원가입 버튼 클릭 -> 회원가입 기능 이용
             // : 이 경우에는 loginModal, signUpModal 둘 다 true가 되기 때문에 둘 다 false로 바꿔줘야 합니다.
           }
-          <Button _onClick={signUpModalOpen}>회원가입</Button>
+          <Button
+            position="fixed"
+            width="15%"
+            height="5.8%"
+            margin="3% 0px 0px 30%"
+            _onClick={signUpModalOpen}
+          >
+            회원가입
+          </Button>
           {signUpModal && (
             <SignUp
               modal={signUpModal}
@@ -103,5 +126,13 @@ const Header = (props) => {
     </div>
   );
 };
+
+const Logo = styled.img`
+  width: 18%;
+  height: 23%;
+  position: fixed;
+  margin: -3% 0px 0px -17%;
+  cursor: pointer;
+`;
 
 export default Header;
