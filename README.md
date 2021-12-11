@@ -1,4 +1,6 @@
 # 익명의 멘탈케어
+<p align="center"><img width="500"  alt="스크린샷 2021-12-09 오후 2 32 42" src="https://user-images.githubusercontent.com/90129613/145664148-ff6951db-040e-4b32-9a59-1e4a10b36c12.png">
+ </p>
 
 </br>
 
