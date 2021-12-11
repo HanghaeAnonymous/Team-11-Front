@@ -9,7 +9,7 @@
  <p> 랜덤의 게시글이 나와 익명으로 소통을 할 수 있습니다.</p>
  <p> 댓글을 작성하지 않은 페이지는 이후엔 볼 수 없으니 주의해주세요!  </p>
   
-  Web Site : 도메인 이후 작성예정
+  Web Site : http://anonymousmentalcare.s3-website.ap-northeast-2.amazonaws.com/
 </br>
 
 
